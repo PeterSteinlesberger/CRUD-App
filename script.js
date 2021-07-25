@@ -1,6 +1,10 @@
 let numbers = [];
 let names = [];
 
+
+loadLocalStorage();
+
+
 function addData() {
 let newName = document.getElementById('inputName').value;
 let newNumber = document.getElementById('inputNumber').value;
@@ -38,3 +42,14 @@ function save() {
     let numbersAsText = JSON.stringify(numbers);
     localStorage.setItem('numbers', numbersAsText);
 }
+
+function loadLocalStorage() {
+    let loadedNamesAsText = localStorage.getItem('names');
+    let loadedNumbersAsText = localStorage.getItem('numbers');
+    
+    if(loadedNamesAsText && loadedNumbersAsText) {
+        names = JSON.parse(loadedNamesAsText);
+        numbers = JSON.parse(loadedNumbersAsText);
+        showData();
+    }
+}  
